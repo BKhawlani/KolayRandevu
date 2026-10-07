@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
-
+import { useAuth } from '../auth/AuthContext'
 export function HeroSection() {
+
+  const { isAuthenticated } = useAuth()
+
   return (
     <section className="hero section-wrap" aria-labelledby="hero-title">
       <div className="hero-copy">
@@ -11,9 +14,12 @@ export function HeroSection() {
           planın netleşsin.
         </p>
         <div className="hero-actions">
-          <Link className="button button-primary" to="/register">
-            Randevu talebi oluştur <span aria-hidden="true">↗</span>
-          </Link>
+          <Link
+  className="button button-primary"
+  to={isAuthenticated ? "/dashboard" : "/login"}
+>
+  Randevu talebi oluştur <span aria-hidden="true">↗</span>
+</Link>
           <a className="text-link" href="#nasil-calisir">Nasıl çalışır? <span aria-hidden="true">↓</span></a>
         </div>
         <div className="hero-note">
